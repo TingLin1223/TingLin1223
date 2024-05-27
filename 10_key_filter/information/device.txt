@@ -1,1 +1,0 @@
-FPGA: Embedfire 征途 Pro (bought from china), chip using Altera Cyclone IV E (EP4CE10F17C8N).
