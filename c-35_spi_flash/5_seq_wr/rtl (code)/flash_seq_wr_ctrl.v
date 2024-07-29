@@ -10,7 +10,7 @@ module  flash_seq_wr_ctrl
     output  reg             mosi        
 );
 
-/* parameter   DATA_NUM    = 'd100; */
+
 
 parameter   IDLE    = 4'b0001,
             WR_EN   = 4'b0010,
@@ -19,18 +19,13 @@ parameter   IDLE    = 4'b0001,
             
 parameter   WR_IN   = 8'b0000_0110,
             PP_IN   = 8'b0000_0010;
-/*             PP_ADR1 = 8'b0000_0000,//Sector
-            PP_ADR2 = 8'b0000_0000,//Page
-            PP_ADR3 = 8'b0010_0101;/ *///Byte
-            /* SE_ADR  = 24'b0000_0000_0000_0100_0010_0101; *///
-parameter   ADDR        =   24'h00_04_d2;   //数据写入地址
+parameter   ADDR        =   24'h00_04_d2;
 
 reg     [4:0]   cnt_clk ;
 reg     [3:0]   state   ;
 reg     [15:0]  cnt_byte;
 reg     [1:0]   cnt_sck ;
 reg     [2:0]   cnt_bit;//[4:0]
-/* reg     [7:0]   data; */
 reg     [23:0]  addr;
 
 always@(posedge sys_clk or negedge sys_rst_n)
@@ -65,13 +60,6 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else if(cnt_sck == 2'd2)
         cnt_bit <= cnt_bit + 1'b1;
         
-/* always@(posedge sys_clk or negedge sys_rst_n)
-    if(sys_rst_n == 1'b0)
-        data <= 8'd0;//5'd0
-    else if(cnt_byte >= 16'd264 && cnt_clk == 5'd31) // to observe overwrite situtiation when data wirtting number bigger than 1 page range.
-        data <= 8'haa;
-    else if(cnt_byte >= 16'd9 && cnt_clk == 5'd31 && cnt_byte < (DATA_NUM + 8))
-        data <= data + 1'b1; */
 
 always@(posedge sys_clk or negedge sys_rst_n)
     if(sys_rst_n == 1'b0)
